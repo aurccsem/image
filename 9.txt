@@ -1,3 +1,5 @@
+import cv2
+import numpy as np
 def affine_transform(image, pts_src, pts_dst):
 matrix = cv2.getAffineTransform(pts_src, pts_dst)
 transformed_image = cv2.warpAffine(image, matrix, (image.shape[1],
