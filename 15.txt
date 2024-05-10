@@ -1,0 +1,28 @@
+import cv2
+import numpy as np
+def rotate_image(image, angle):
+height, width = image.shape[:2]
+rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), angle, 1)
+rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+return rotated_image
+# Usage
+image = cv2.imread("img.jpg")
+angle_degrees = 45
+rotated = rotate_image(image, angle_degrees)
+cv2.imshow("Rotated Image", rotated)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+--------
+
+def affine_transform(image, pts_src, pts_dst):
+matrix = cv2.getAffineTransform(pts_src, pts_dst)
+transformed_image = cv2.warpAffine(image, matrix, (image.shape[1],
+image.shape[0]))
+return transformed_image
+image = cv2.imread("img.jpg")
+src_points = np.float32([[50, 50], [200, 50], [50, 200]])
+dst_points = np.float32([[10, 100], [200, 50], [100, 250]])
+affine_transformed = affine_transform(image, src_points, dst_points)
+cv2.imshow("Affine Transformed Image", affine_transformed)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
