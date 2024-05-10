@@ -1,0 +1,17 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+# Read the image
+image = cv2.imread("/content/dev.jpg")  # Replace with your image file
+
+# Convert the image to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Apply Canny edge detection
+edges = cv2.Canny(gray, 100, 200)  # Adjust the threshold values as needed
+
+# Display the original image and the edges
+cv2_imshow(image)
+cv2_imshow(edges)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
