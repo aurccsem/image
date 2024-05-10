@@ -1,0 +1,17 @@
+import torch
+from pathlib import Path
+from PIL import Image
+import numpy as np
+import cv2
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+def detect_objects(image_path):
+ img = Image.open(image_path)
+ results = model(img)
+EX NO : 04
+OBJECT DETECTION AND RECOGNITION
+DATE :
+ return results
+image_path = '/content/pic.jpg'
+results = detect_objects(image_path)
+results.show()
+results.save()
