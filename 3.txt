@@ -1,0 +1,26 @@
+import cv2
+import numpy as np
+def rotate_image(image, angle):
+height, width = image.shape[:2]
+rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), angle, 1)
+rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+return rotated_image
+# Usage
+image = cv2.imread("img.jpg")
+angle_degrees = 45
+rotated = rotate_image(image, angle_degrees)
+cv2.imshow("Rotated Image", rotated)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+------
+def scale_image(image, scale_x, scale_y):
+scaled_image = cv2.resize(image, None, fx=scale_x, fy=scale_y)
+return scaled_image
+# Usage
+image = cv2.imread("img.jpg")
+scale_factor_x = 1.5
+scale_factor_y = 1.5
+scaled = scale_image(image, scale_factor_x, scale_factor_y)
+cv2.imshow("Scaled Image", scaled)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
